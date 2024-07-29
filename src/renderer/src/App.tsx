@@ -1,35 +1,27 @@
-import Versions from './components/Versions'
-import electronLogo from './assets/electron.svg'
+import Logo from './assets/logo.png'
+import { Background } from './components/background'
+import { Navbar } from './components/navbar'
 
-function App(): JSX.Element {
-  const ipcHandle = (): void => window.electron.ipcRenderer.send('ping')
+export function App(): JSX.Element {
+  // const ipcHandle = (): void => window.electron.ipcRenderer.send('ping')
 
   return (
-    <>
-      <img alt="logo" className="logo" src={electronLogo} />
-      <div className="creator">Powered by electron-vite</div>
-      <div className="text">
-        Build an Electron app with <span className="react">React</span>
-        &nbsp;and <span className="ts">TypeScript</span>
-      </div>
-      <p className="tip">
-        Please try pressing <code>F12</code> to open the devTool
-      </p>
-      <div className="actions">
-        <div className="action">
-          <a href="https://electron-vite.org/" target="_blank" rel="noreferrer">
-            Documentation
-          </a>
+    <div className="min-w-screen min-h-screen overflow-hidden">
+      <Navbar />
+      <Background />
+      <div className="w-full h-[calc(100vh-3rem)] gap-y-12 flex flex-col justify-center items-center">
+        <div className="flex flex-col justify-center items-center">
+          <img src={Logo} alt="" />
+          <span className="text-white font-bold text-6xl">Taurius Builder</span>
+          <span className="text-white font-bold text-sm">
+            Crie executáveis de forma intuitiva e simples
+          </span>
         </div>
-        <div className="action">
-          <a target="_blank" rel="noreferrer" onClick={ipcHandle}>
-            Send IPC
-          </a>
-        </div>
+
+        <button className="bg-design-system-blue-600 text-white text-base rounded-lg font-semibold px-6 h-12 hover:brightness-125 cursor-default">
+          Criar Executável
+        </button>
       </div>
-      <Versions></Versions>
-    </>
+    </div>
   )
 }
-
-export default App
