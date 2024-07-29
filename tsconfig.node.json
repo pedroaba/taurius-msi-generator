@@ -6,7 +6,8 @@
     "types": ["electron-vite/node"],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/renderer/*"]
+      "@main/*": ["./src/main/*"],
+      "@preload/*": ["./src/preload/*"]
     }
   }
 }

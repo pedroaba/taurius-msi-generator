@@ -1,5 +1,6 @@
 import { electronApp, is, optimizer } from '@electron-toolkit/utils'
 import { app, BrowserWindow, shell } from 'electron'
+import { createFileRoute, createURLRoute } from 'electron-router-dom'
 import { join } from 'path'
 
 import icon from '../../resources/icon.png?asset'
@@ -26,10 +27,17 @@ function createWindow(): void {
     return { action: 'deny' }
   })
 
+  const devServerURL = createURLRoute('http://localhost:5173', 'main')
+
+  const fileRoute = createFileRoute(
+    join(__dirname, '../renderer/index.html'),
+    'main',
+  )
+
   if (is.dev && process.env.ELECTRON_RENDERER_URL) {
-    mainWindow.loadURL(process.env.ELECTRON_RENDERER_URL)
+    mainWindow.loadURL(devServerURL)
   } else {
-    mainWindow.loadFile(join(__dirname, '../renderer/index.html'))
+    mainWindow.loadFile(...fileRoute)
   }
 }
 
