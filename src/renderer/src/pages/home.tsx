@@ -1,4 +1,4 @@
-import { zodResolver } from '@hookform/resolvers/zod'
+import { Project } from '@renderer/@types/models/project'
 import Logo from '@renderer/assets/logo.png'
 import { Button } from '@renderer/components/ui/button'
 import {
@@ -26,9 +26,12 @@ import { Textarea } from '@renderer/components/ui/textarea'
 import { useForm } from 'react-hook-form'
 
 export function Home() {
-  const form = useForm()
+  const form = useForm<Project>()
 
-  async function handleCreateProject(data) {}
+  async function handleCreateProject(data: Project) {
+    const result = await window.api.projectsApi.create(data)
+    console.log(result)
+  }
 
   return (
     <div className="w-full h-[calc(100vh-3rem)] gap-y-12 flex flex-col justify-center items-center">
@@ -56,7 +59,10 @@ export function Home() {
             </DialogDescription>
 
             <Form {...form}>
-              <form className="space-y-4">
+              <form
+                className="space-y-4"
+                onSubmit={form.handleSubmit(handleCreateProject)}
+              >
                 <FormField
                   control={form.control}
                   name="name"

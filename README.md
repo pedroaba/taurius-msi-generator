@@ -1,6 +1,12 @@
-# taurius-msi-generator
+# Taurius Builder
 
 An Electron application with React and TypeScript
+
+## Functional Requirements
+
+- [ ] Separar cada executável por projetos
+- [ ] O usuário vai poder escolher qual o builder a ser utilizado para criar o executável
+- [ ] Deverá manter um histórico dos instaladores gerados
 
 ## Recommended IDE Setup
 

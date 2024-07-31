@@ -2,7 +2,7 @@ import { electronAPI } from '@electron-toolkit/preload'
 import type { ProjectCreateParams } from '@preload/@types/ipc'
 import { contextBridge, ipcRenderer } from 'electron'
 
-import { IPC_EVENTS } from '../@shared/constants/ipc'
+import { IPC_EVENTS } from '../shared/constants/ipc'
 
 const api = {
   projectsApi: {

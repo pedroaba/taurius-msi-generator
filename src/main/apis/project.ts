@@ -1,8 +1,9 @@
 import { randomUUID } from 'node:crypto'
 
-import { type Either, left, right } from '@main/@core/either'
-import { store } from '@main/store'
 import { z } from 'zod'
+
+import { type Either, left, right } from '../@core/either'
+import { store } from '../store'
 
 const projectCreateSchema = z.object({
   name: z

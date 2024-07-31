@@ -1,3 +1,5 @@
+import './ipc'
+
 import { electronApp, is, optimizer } from '@electron-toolkit/utils'
 import { app, BrowserWindow, shell } from 'electron'
 import { createFileRoute, createURLRoute } from 'electron-router-dom'
