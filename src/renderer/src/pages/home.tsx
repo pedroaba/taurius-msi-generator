@@ -3,6 +3,7 @@ import Logo from '@renderer/assets/logo.png'
 import { Button } from '@renderer/components/ui/button'
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -23,29 +24,11 @@ import { Input } from '@renderer/components/ui/input'
 import { Label } from '@renderer/components/ui/label'
 import { Textarea } from '@renderer/components/ui/textarea'
 import { useForm } from 'react-hook-form'
-import { z } from 'zod'
-
-const projectCreateSchema = z.object({
-  name: z
-    .string({
-      required_error: 'É necessário inserir o nome do projeto',
-    })
-    .min(5, {
-      message:
-        'É necessário que o projeto tenha no mínimo 5 caracteres no nome',
-    })
-    .transform((name) => name.trim())
-    .refine((name) => name.length > 5, {
-      message:
-        'É necessário que o projeto tenha no mínimo 5 caracteres no nome',
-    }),
-  description: z.string().optional().default(''),
-})
 
 export function Home() {
-  const form = useForm({
-    resolver: zodResolver(projectCreateSchema),
-  })
+  const form = useForm()
+
+  async function handleCreateProject(data) {}
 
   return (
     <div className="w-full h-[calc(100vh-3rem)] gap-y-12 flex flex-col justify-center items-center">
@@ -111,9 +94,11 @@ export function Home() {
                   )}
                 />
                 <DialogFooter>
-                  <Button className="bg-red-700 hover:bg-red-600 transition-colors">
-                    Cancelar
-                  </Button>
+                  <DialogClose asChild>
+                    <Button className="bg-red-700 hover:bg-red-600 transition-colors">
+                      Cancelar
+                    </Button>
+                  </DialogClose>
                   <Button className="bg-green-700 hover:bg-green-600 transition-colors">
                     Criar Projeto
                   </Button>
