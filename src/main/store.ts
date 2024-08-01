@@ -4,14 +4,16 @@ type Project = {
   id: string
   name: string
   description?: string
+  createdAt: number
+  updatedAt: number
 }
 
 export interface TauriusBuilderStore {
-  projects: Project[]
+  projects: Record<string, Project>
 }
 
 export const store = new Store<TauriusBuilderStore>({
   defaults: {
-    projects: [],
+    projects: {},
   },
 })

@@ -4,6 +4,10 @@ import { toast } from 'sonner'
 
 import { IPC_NOTIFICATION_EVENTS } from '../../../shared/constants/notification'
 
+type NotificationListenerSuccessEvent = {
+  message: string
+}
+
 interface INotificationContext {}
 
 export const NotificationContext = createContext({} as INotificationContext)
@@ -21,6 +25,13 @@ export function NotificationContextProvider({
       for (const field in validationErrorFields) {
         toast.error(validationErrorFields[field].at(0))
       }
+    },
+  )
+
+  window.electron.ipcRenderer.on(
+    IPC_NOTIFICATION_EVENTS.SUCCESS,
+    function (_, { message }: NotificationListenerSuccessEvent) {
+      toast.success(message)
     },
   )
 
