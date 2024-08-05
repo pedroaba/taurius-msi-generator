@@ -35,6 +35,34 @@ export function NotificationContextProvider({
     },
   )
 
+  window.electron.ipcRenderer.on(
+    IPC_NOTIFICATION_EVENTS.INFO,
+    function (_, { message }: NotificationListenerSuccessEvent) {
+      toast.info(message)
+    },
+  )
+
+  window.electron.ipcRenderer.on(
+    IPC_NOTIFICATION_EVENTS.FAILURE,
+    function (_, { message }: NotificationListenerSuccessEvent) {
+      toast.warning(message)
+    },
+  )
+
+  window.electron.ipcRenderer.on(
+    IPC_NOTIFICATION_EVENTS.ERROR,
+    function (_, { message }: NotificationListenerSuccessEvent) {
+      toast.warning(message)
+    },
+  )
+
+  window.electron.ipcRenderer.on(
+    IPC_NOTIFICATION_EVENTS.FATAL,
+    function (_, { message }: NotificationListenerSuccessEvent) {
+      toast.error(message)
+    },
+  )
+
   return (
     <NotificationContext.Provider value={{}}>
       {children}

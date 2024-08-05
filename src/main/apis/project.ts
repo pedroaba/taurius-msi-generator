@@ -1,9 +1,10 @@
 import { randomUUID } from 'node:crypto'
 
+import { type Either, left, right } from '@main/@core/either'
+import { store } from '@main/store'
 import { z } from 'zod'
 
-import { type Either, left, right } from '../@core/either'
-import { store } from '../store'
+import type { Project } from '@/shared/typing/models/project'
 
 const projectCreateSchema = z.object({
   name: z
@@ -29,11 +30,13 @@ type ProjectCreateResponse = Either<
   Record<'id', string>
 >
 
-export const projectsApi = {
-  create: async function (
-    body: ProjectCreateSchema,
+type ProjectFetchResponse = Either<null, Record<'projects', Project[]>>
+
+export class ProjectApi {
+  static async create(
+    data: ProjectCreateSchema,
   ): Promise<ProjectCreateResponse> {
-    const project = projectCreateSchema.safeParse(body)
+    const project = projectCreateSchema.safeParse(data)
     if (project.error) {
       const flattenErrors = project.error.flatten().fieldErrors
 
@@ -53,5 +56,21 @@ export const projectsApi = {
     return right({
       id: projectId,
     })
-  },
+  }
+
+  static async fetch(projectName: string): Promise<ProjectFetchResponse> {
+    const projects = store.get('projects')
+    const projectList = Object.values(projects).filter((project) =>
+      project.name.toLowerCase().includes(projectName.toLowerCase().trim()),
+    )
+
+    return right({
+      projects: projectList,
+    })
+  }
+
+  static async delete(projectId: string): Promise<void> {
+    // @ts-expect-error (https://github.com/sindresorhus/electron-store/issues/196)
+    store.delete(`projects.${projectId}`)
+  }
 }

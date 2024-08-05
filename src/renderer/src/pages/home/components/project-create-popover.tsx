@@ -1,4 +1,3 @@
-import type { Project } from '@renderer/@types/models/project'
 import { Button } from '@renderer/components/ui/button'
 import {
   Dialog,
@@ -26,13 +25,15 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 
+import type { ProjectCreateParams } from '@/shared/typing/models/project'
+
 export function ProjectCreatePopover() {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false)
-  const form = useForm<Project>()
+  const form = useForm<ProjectCreateParams>()
 
   const router = useNavigate()
 
-  async function handleCreateProject(data: Project) {
+  async function handleCreateProject(data: ProjectCreateParams) {
     const result = await window.api.projectsApi.create(data)
     if (!result) {
       return
@@ -104,6 +105,7 @@ export function ProjectCreatePopover() {
                   </FormItem>
                 )}
               />
+
               <DialogFooter>
                 <DialogClose asChild>
                   <Button className="bg-red-700 hover:bg-red-600 transition-colors">

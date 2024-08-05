@@ -1,5 +1,7 @@
 export const IPC_EVENTS = {
   PROJECTS: {
     CREATE: 'PROJECT_CREATE',
+    FETCH_ALL: 'PROJECT_FETCH_ALL',
+    DELETE_BY_ID: 'PROJECT_DELETE_BY_ID',
   },
 } as const

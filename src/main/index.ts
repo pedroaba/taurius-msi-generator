@@ -1,4 +1,4 @@
-import './ipc'
+import '@main/ipc/projects'
 
 import { electronApp, is, optimizer } from '@electron-toolkit/utils'
 import { app, BrowserWindow, shell } from 'electron'
