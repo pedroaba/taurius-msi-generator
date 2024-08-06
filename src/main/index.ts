@@ -1,11 +1,14 @@
 import '@main/ipc/projects'
 
 import { electronApp, is, optimizer } from '@electron-toolkit/utils'
+import { getDatabaseConnection } from '@main/database/rxdb'
 import { app, BrowserWindow, shell } from 'electron'
 import { createFileRoute, createURLRoute } from 'electron-router-dom'
 import { join } from 'path'
 
 import icon from '../../resources/icon.png?asset'
+
+getDatabaseConnection()
 
 function createWindow(): void {
   const mainWindow = new BrowserWindow({

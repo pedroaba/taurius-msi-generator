@@ -30,6 +30,8 @@ export function ProjectListPage() {
         projectName ?? projectNameFilter,
       )
 
+      console.log(projects)
+
       setProjects(projects)
       setIsFetchingProjects(false)
     },
@@ -68,7 +70,8 @@ export function ProjectListPage() {
 
   useEffect(() => {
     handleFetchProjects()
-  }, [handleFetchProjects])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <div className="space-y-10 p-10">
@@ -109,7 +112,7 @@ export function ProjectListPage() {
           </div>
         )}
         {projects.length > 0 && !isFetchingProjects && (
-          <div className="grid grid-cols-4 md:grid-cols-3 max-md:grid-cols-2 sm:grid-cols-2 gap-4 place-content-center grid-rows-3">
+          <div className="grid grid-cols-4 md:grid-cols-3 max-md:grid-cols-2 sm:grid-cols-2 gap-4 w-full place-content-center grid-rows-3">
             {projects.map((project) => {
               return (
                 <Card
