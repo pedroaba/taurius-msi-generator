@@ -72,25 +72,28 @@ export function ProjectListPage() {
 
   return (
     <div className="space-y-10 p-10">
-      <div className="w-full flex flex-row-reverse items-center gap-4">
-        <Button
-          className="bg-green-800 hover:bg-green-900"
-          onClick={handleClearFilter}
-        >
-          Limpar Filtro
-          <Eraser className="text-white size-4 ml-2" />
-        </Button>
-        <div className="flex items-center justify-between pr-2.5 w-96 border-2 group group-focus:border-design-system-schemes-inverse-on-surface border-design-system-schemes-on-surface-variant bg-transparent rounded-lg">
-          <Input
-            className="bg-transparent"
-            placeholder="Pesquise pelo nome do projeto..."
-            value={projectNameFilter}
-            onKeyDown={handleKeyDownOnSearchInput}
-            onChange={handleOnChangeFilterProjectName}
-            disabled={isFetchingProjects}
-            ref={searchInputRef}
-          />
-          <Search className="text-design-system-schemes-on-surface-variant size-5" />
+      <div className="w-full flex justify-between items-center gap-4">
+        <span className="text-white text-xl font-bold">Projetos</span>
+        <div className="flex items-center justify-end gap-4">
+          <div className="flex items-center justify-between pr-2.5 w-96 border-2 group group-focus:border-design-system-schemes-inverse-on-surface border-design-system-schemes-on-surface-variant bg-transparent rounded-lg">
+            <Input
+              className="bg-transparent"
+              placeholder="Pesquise pelo nome do projeto..."
+              value={projectNameFilter}
+              onKeyDown={handleKeyDownOnSearchInput}
+              onChange={handleOnChangeFilterProjectName}
+              disabled={isFetchingProjects}
+              ref={searchInputRef}
+            />
+            <Search className="text-design-system-schemes-on-surface-variant size-5" />
+          </div>
+          <Button
+            className="bg-green-800 hover:bg-green-900"
+            onClick={handleClearFilter}
+          >
+            Limpar Filtro
+            <Eraser className="text-white size-4 ml-2" />
+          </Button>
         </div>
       </div>
       <div className="flex flex-col justify-center items-center gap-4">
@@ -101,7 +104,7 @@ export function ProjectListPage() {
           </div>
         )}
         {projects.length === 0 && !isFetchingProjects && (
-          <div className="text-center flex justify-center items-center flex-col gap-4">
+          <div className="text-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center items-center flex-col gap-4">
             <p className="text-white/40 text-xl">
               Não há projetos cadastrados ainda
             </p>
@@ -109,7 +112,7 @@ export function ProjectListPage() {
           </div>
         )}
         {projects.length > 0 && !isFetchingProjects && (
-          <div className="grid grid-cols-4 md:grid-cols-3 max-md:grid-cols-2 sm:grid-cols-2 gap-4 place-content-center grid-rows-3">
+          <div className="grid grid-cols-4 md:grid-cols-3 max-md:grid-cols-2 sm:grid-cols-2 gap-4 place-content-center w-full grid-rows-3">
             {projects.map((project) => {
               return (
                 <Card

@@ -18,6 +18,12 @@ export function Navbar() {
           Histórico de Build
         </span>
         <Link
+          to="/releases"
+          className="text-sm text-design-system-schemes-inverse-on-surface font-bold cursor-default select-none"
+        >
+          Releases
+        </Link>
+        <Link
           to="/projects"
           className="text-sm text-design-system-schemes-inverse-on-surface font-bold cursor-default select-none"
         >

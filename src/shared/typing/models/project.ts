@@ -1,14 +1,8 @@
-export type Project = {
-  id: string
+import type { BaseModel } from './base'
 
+export type Project = BaseModel & {
   name: string
   description?: string
-
-  createdAt: number
-  updatedAt: number
 }
 
-export type ProjectCreateParams = Omit<
-  Project,
-  'createdAt' | 'updatedAt' | 'id'
->
+export type ProjectCreateParams = Omit<Project, keyof BaseModel>

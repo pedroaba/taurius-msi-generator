@@ -30,7 +30,7 @@ export function Card({ project, onDeleteProject = async () => {} }: CardProps) {
     : 'Não tem descrição.'
 
   return (
-    <div className="space-y-4 min-w-64 min-h-52 max-w-full bg-zinc-700 p-4 justify-between flex-col rounded-md group relative">
+    <div className="space-y-5 min-w-64 min-h-52 h-full max-w-full bg-zinc-700 p-4 justify-between flex-col rounded-md group relative">
       <div className="flex justify-between gap-4 w-full">
         <div className="flex gap-4 w-full">
           <div className="flex items-center justify-center min-w-10 w-10 h-10 bg-slate-400/30 rounded">
@@ -56,7 +56,7 @@ export function Card({ project, onDeleteProject = async () => {} }: CardProps) {
       </div>
       <TooltipProvider skipDelayDuration={0} delayDuration={300}>
         <Tooltip>
-          <TooltipTrigger asChild>
+          <TooltipTrigger asChild className="mb-auto">
             <div className="space-y-3 max-h-52 line-clamp-6">
               <p className="text-xs text-white/55 line-clamp-6">
                 {projectDescription}
@@ -69,7 +69,7 @@ export function Card({ project, onDeleteProject = async () => {} }: CardProps) {
             align="start"
             className="bg-gray-400 border-none space-y-2"
           >
-            <div className="max-w-96 text-black font-bold text-xs ">
+            <div className="max-w-96 text-black font-bold text-xs">
               <p className="">{projectDescription}</p>
             </div>
             <PrimitiveTooltip.Arrow className="fill-gray-400" />

@@ -16,4 +16,6 @@ export const store = new Store<TauriusBuilderStore>({
   defaults: {
     projects: {},
   },
+  name: 'database',
+  watch: true,
 })
